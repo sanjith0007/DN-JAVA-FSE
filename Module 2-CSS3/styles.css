@@ -1,0 +1,191 @@
+/* Universal Selector */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* Body Styles */
+body{
+    font-family:'Poppins',sans-serif;
+
+    background-image:url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200");
+    background-size:cover;
+    background-attachment:fixed;
+
+    color:#333;
+    padding:20px;
+}
+
+/* Header Styles */
+#mainHeader{
+    background:#444;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/* Navigation Styles */
+nav{
+    background:white;
+    border:1px solid #ccc;
+    margin-top:10px;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    justify-content:center;
+}
+
+nav li{
+    padding:10px;
+    margin:5px;
+}
+
+nav a:link{
+    color:#333;
+    text-decoration:none;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+nav a:active{
+    color:gray;
+}
+
+nav a:visited{
+    color:#555;
+}
+
+/* Element Selector */
+h2{
+    background:linear-gradient(to right,#e5e5e5,#f8f8f8);
+    padding:10px;
+    margin-top:20px;
+}
+
+/* Group Selector */
+h3,p{
+    line-height:1.8;
+    letter-spacing:1px;
+}
+
+/* Event Card */
+.eventCard{
+    background:white;
+    border:1px solid #ccc;
+    padding:15px;
+    margin-top:15px;
+}
+
+/* Typography */
+.description{
+    font-size:18px;
+    font-style:italic;
+    font-weight:400;
+    text-transform:capitalize;
+    text-align:justify;
+}
+
+/* Lists */
+.customList{
+    list-style-type:square;
+    list-style-position:inside;
+}
+
+.customList li{
+    padding:5px;
+    margin:5px;
+}
+
+/* Tables */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#444;
+    color:white;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+
+/* Form */
+input,
+textarea{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+}
+
+input:focus,
+textarea:focus{
+    outline:2px solid gray;
+}
+
+/* Hidden vs None */
+.hiddenBox{
+    visibility:hidden;
+}
+
+.noneBox{
+    display:none;
+}
+
+/* Multi Column */
+.newsArticle{
+    background:white;
+    padding:15px;
+
+    column-count:2;
+    column-gap:30px;
+    column-rule:1px solid gray;
+}
+
+/* Gallery */
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.gallery img{
+    width:30%;
+    height:30vh;
+    border:1px solid #ccc;
+}
+
+/* Responsive Design */
+@media screen and (max-width:768px){
+
+    nav ul{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .gallery img{
+        width:90%;
+        height:auto;
+    }
+
+    h1{
+        font-size:5vw;
+    }
+
+    .newsArticle{
+        column-count:1;
+    }
+}
