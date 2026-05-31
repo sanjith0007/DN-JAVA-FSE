@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Local Community Event Portal</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Local Community Event Portal</h1>
+        <p>Find and Register for Community Events</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="card">
+        <h2>Filter Events</h2>
+
+        <label>Select Category</label>
+
+        <select id="categoryFilter">
+            <option value="All">All</option>
+            <option value="Music">Music</option>
+            <option value="Workshop">Workshop</option>
+            <option value="Sports">Sports</option>
+        </select>
+
+        <br><br>
+
+        <input type="text"
+               id="searchBox"
+               placeholder="Search Event Name">
+    </section>
+
+    <section class="card">
+
+        <h2>Upcoming Events</h2>
+
+        <div id="loadingSpinner">
+            Loading Events...
+        </div>
+
+        <div id="eventContainer">
+
+        </div>
+
+    </section>
+
+    <section class="card">
+
+        <h2>Event Registration</h2>
+
+        <form id="registrationForm">
+
+            <label>Name</label>
+            <input type="text" name="name">
+
+            <span id="nameError" class="error"></span>
+
+            <label>Email</label>
+            <input type="email" name="email">
+
+            <span id="emailError" class="error"></span>
+
+            <label>Select Event</label>
+
+            <select name="event">
+                <option value="">Choose Event</option>
+                <option value="Music Night">Music Night</option>
+                <option value="Baking Workshop">Baking Workshop</option>
+                <option value="Football Tournament">Football Tournament</option>
+            </select>
+
+            <span id="eventError" class="error"></span>
+
+            <br><br>
+
+            <button type="submit" id="registerBtn">
+                Register
+            </button>
+
+        </form>
+
+        <br>
+
+        <div id="message"></div>
+
+    </section>
+
+    <section class="card">
+
+        <h2>Event Object Information</h2>
+
+        <div id="objectInfo"></div>
+
+    </section>
+
+    <section class="card">
+
+        <h2>Debugging & Testing</h2>
+
+        <ul>
+            <li>Open DevTools using F12</li>
+            <li>Check Console Logs</li>
+            <li>Check Network Tab for Fetch Requests</li>
+            <li>Add Breakpoints in Sources Tab</li>
+            <li>Inspect Variables while Debugging</li>
+        </ul>
+
+    </section>
+
+    <section class="card">
+
+        <h2>jQuery Demo</h2>
+
+        <button id="showBtn">Fade In Events</button>
+
+        <button id="hideBtn">Fade Out Events</button>
+
+        <p>
+            Framework Benefit:
+            React and Vue help build large applications
+            with reusable components and better state management.
+        </p>
+
+    </section>
+
+    
+    <footer>
+        <p>© 2026 Local Community Event Portal</p>
+    </footer>
+
+   
+    <script src="main.js"></script>
+
+</body>
+</html>
