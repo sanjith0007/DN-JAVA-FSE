@@ -1,47 +1,80 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
+//Server side
+import java.io.*;
+import java.net.*;
 
 class TCPServer {
 
     public static void main(String[] args)
-        throws Exception {
+            throws Exception {
 
-    ServerSocket serverBox =
-        new ServerSocket(5000);
+        ServerSocket serverObj =
+                new ServerSocket(5000);
 
-    Socket userLink =
-        serverBox.accept();
+        Socket clientObj =
+                serverObj.accept();
 
-    BufferedReader readBox =
-        new BufferedReader(
-            new InputStreamReader(
-                userLink.getInputStream()));
+        BufferedReader receiveBox =
+                new BufferedReader(
+                        new InputStreamReader(
+                                clientObj.getInputStream()));
 
-    System.out.println(
-        readBox.readLine());
+        PrintWriter sendBox =
+                new PrintWriter(
+                        clientObj.getOutputStream(),
+                        true);
 
-    serverBox.close();
+        String clientMsg =
+                receiveBox.readLine();
+
+        System.out.println(
+                "Client: " + clientMsg);
+
+        sendBox.println(
+                "Hello Client");
+
+        clientObj.close();
+
+        serverObj.close();
     }
-}
+
+//Client Side
 
 class TCPClient {
 
     public static void main(String[] args)
-        throws Exception {
+            throws Exception {
 
-    Socket sendBox =
-        new Socket("localhost",5000);
+        Socket socketObj =
+                new Socket("localhost",5000);
 
-    PrintWriter textOut =
-        new PrintWriter(
-            sendBox.getOutputStream(),
-            true);
+        PrintWriter sendBox =
+                new PrintWriter(
+                        socketObj.getOutputStream(),
+                        true);
 
-    textOut.println("Hello Server");
+        BufferedReader receiveBox =
+                new BufferedReader(
+                        new InputStreamReader(
+                                socketObj.getInputStream()));
 
-    sendBox.close();
+        sendBox.println(
+                "Hello Server");
+
+        System.out.println(
+                "Server: " +
+                receiveBox.readLine());
+
+        socketObj.close();
     }
 }
+
+/*
+Server Output:
+Client: Hello Server
+
+Client Output:
+Server: Hello Client
+*/
+
+}
+

@@ -6,41 +6,53 @@ class TransactionHandlingJDBC {
 
     public static void main(String[] args) {
 
+        Connection bankConn = null;
+
         try {
 
-            Connection bankLink =
-                    DriverManager.getConnection(
-                            "jdbc:mysql://localhost:3306/bankdb",
-                            "root",
-                            "password");
+            bankConn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/bankdb",
+                    "root",
+                    "password");
 
-            bankLink.setAutoCommit(false);
+            bankConn.setAutoCommit(false);
 
-            PreparedStatement debitQuery =
-                    bankLink.prepareStatement(
-                            "update accounts set balance=balance-? where id=?");
+            PreparedStatement debitStmt =
+                    bankConn.prepareStatement(
+                            "update accounts set balance = balance - ? where id = ?");
 
-            debitQuery.setInt(1,500);
-            debitQuery.setInt(2,1);
+            debitStmt.setInt(1,500);
+            debitStmt.setInt(2,1);
 
-            debitQuery.executeUpdate();
+            debitStmt.executeUpdate();
 
-            PreparedStatement creditQuery =
-                    bankLink.prepareStatement(
-                            "update accounts set balance=balance+? where id=?");
+            PreparedStatement creditStmt =
+                    bankConn.prepareStatement(
+                            "update accounts set balance = balance + ? where id = ?");
 
-            creditQuery.setInt(1,500);
-            creditQuery.setInt(2,2);
+            creditStmt.setInt(1,500);
+            creditStmt.setInt(2,2);
 
-            creditQuery.executeUpdate();
+            creditStmt.executeUpdate();
 
-            bankLink.commit();
+            bankConn.commit();
 
             System.out.println("Transfer Successful");
 
         } catch(Exception err) {
 
-            System.out.println("Transfer Failed");
+            try {
+
+                if(bankConn != null) {
+                    bankConn.rollback();
+                }
+
+            } catch(Exception rollbackErr) {
+
+                System.out.println(rollbackErr);
+            }
+
+            System.out.println("Transaction Rolled Back");
         }
     }
 }

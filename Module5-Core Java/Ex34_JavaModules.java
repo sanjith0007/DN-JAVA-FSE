@@ -1,21 +1,36 @@
-class JavaModules {
+//module.java
+ module com.utils {
+    exports com.utils;
+}
+// Message
+package com.utils;
+
+public class MessageUtil {
+
+    public static String getMessage() {
+        return "Welcome to Java Modules";
+    }
+}
+
+
+module com.greetings {
+    requires com.utils;
+}
+//main.java
+package com.greetings;
+
+import com.utils.MessageUtil;
+
+public class Main {
 
     public static void main(String[] args) {
 
         System.out.println(
-                "Create module-info.java in both modules");
-
-        System.out.println(
-                "Export utility package from com.utils");
-
-        System.out.println(
-                "Use requires com.utils in com.greetings");
+                MessageUtil.getMessage());
     }
 }
 
 /*
 Output:
-Create module-info.java in both modules
-Export utility package from com.utils
-Use requires com.utils in com.greetings
+Welcome to Java Modules
 */
